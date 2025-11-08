@@ -90,7 +90,7 @@ const App: React.FC = () => {
     
     setSubmissions(prevSubmissions => [submissionWithId, ...prevSubmissions]);
 
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwUJmxcGFhrvaKmEBNtmZR7g8NRLNfbvna6izVtXcnVsYoM_DGw-Z6m0dqNTmYjPjAJ/exec';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxfSzZQWYNS3S9vhCcpWtbBl4WrK1_UVNeu2E0YL2-mq7BTPJH-K_hfklYmfXJlXmyV/exec';
 
     try {
         const response = await fetch(GOOGLE_SCRIPT_URL, {

@@ -76,7 +76,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onSubmit }) => {
 
       setIsGenerating(true);
       try {
-        // Fix: Use process.env.API_KEY directly as per the coding guidelines.
+        // FIX: Per coding guidelines, API key must be read from process.env.API_KEY. This also resolves the TypeScript errors.
         const ai = new GoogleGenAI({apiKey: process.env.API_KEY});
         const prompt = `Uma pessoa com as seguintes alergias: "${formData.allergies}" vai para um retiro de 3 dias. Sugira 1 a 3 itens essenciais que ela deve levar, em uma frase curta. Exemplo: "antialérgico e pomada para picadas". Responda apenas com os itens.`;
         
