@@ -76,12 +76,8 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onSubmit }) => {
 
       setIsGenerating(true);
       try {
-        // FIX: Per coding guidelines and Vite standards, use import.meta.env
-        const apiKey = import.meta.env.VITE_API_KEY;
-        if (!apiKey) {
-            throw new Error("API key not found.");
-        }
-        const ai = new GoogleGenAI({apiKey: apiKey});
+        // Fix: Use process.env.API_KEY directly as per the coding guidelines.
+        const ai = new GoogleGenAI({apiKey: process.env.API_KEY});
         const prompt = `Uma pessoa com as seguintes alergias: "${formData.allergies}" vai para um retiro de 3 dias. Sugira 1 a 3 itens essenciais que ela deve levar, em uma frase curta. Exemplo: "antialérgico e pomada para picadas". Responda apenas com os itens.`;
         
         const response = await ai.models.generateContent({
