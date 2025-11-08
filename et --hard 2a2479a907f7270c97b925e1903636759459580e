@@ -1,0 +1,101 @@
+[33mcommit 2a2479a907f7270c97b925e1903636759459580e[m
+Author: Nicolas Couti <nicolass.couti@gmail.com>
+Date:   Sat Nov 8 02:37:53 2025 -0300
+
+    Versão inicial do app de inscrição
+
+[33mcommit 808fcb3d8bf9cdd5cadaf597fe13c70145186e59[m
+Author: Nicolas Couti <nicolass.couti@gmail.com>
+Date:   Sat Nov 8 02:44:00 2025 -0300
+
+    Corrige uso da chave de API
+
+[33mcommit 540f4396231e823ed0bb6df64490489990e8fe3c[m
+Author: Nicolas Couti <nicolass.couti@gmail.com>
+Date:   Sat Nov 8 02:50:02 2025 -0300
+
+    Corrige uso da chave de API
+
+[33mcommit afcac963defe42b125cc6fb4244f84c2a5f96f36[m
+Author: Nicolas Couti <nicolass.couti@gmail.com>
+Date:   Sat Nov 8 02:53:31 2025 -0300
+
+    Fix: Corrige script de build para o deploy na Vercel
+
+[33mcommit 78f0224e224cfaac4d12594ba888d855bfc50188[m
+Author: Nicolas Couti <nicolass.couti@gmail.com>
+Date:   Sat Nov 8 02:58:28 2025 -0300
+
+    Fix: Altera a execução do build para contornar erro de permissão
+
+[33mcommit 3a9a30d051d449e2dd6d47aef94a10276f87185d[m
+Author: Nicolas Couti <nicolass.couti@gmail.com>
+Date:   Sat Nov 8 03:14:35 2025 -0300
+
+    Atualiza o projeto com e-mail de confirmação e melhorias
+
+[33mcommit 0e9ca894fde9f52e88b3459d8d8172c7a90fd123[m
+Author: Nicolas Couti <nicolass.couti@gmail.com>
+Date:   Sat Nov 8 03:46:42 2025 -0300
+
+    Fix: Atualiza a URL do Google Script para a versão correta
+
+[33mcommit 20e560c147c74fc1d1c916c212caf66d49c94fdf[m
+Author: Nicolas Couti <nicolass.couti@gmail.com>
+Date:   Sat Nov 8 03:55:04 2025 -0300
+
+    Fix: Atualiza a URL do Google Script
+
+[33mcommit 51537925f29ea1a5494049069f4aa36d6e3a7367[m
+Author: Nicolas Couti <nicolass.couti@gmail.com>
+Date:   Sat Nov 8 04:02:07 2025 -0300
+
+    Fix: Atualiza a URL do Google Script 1
+
+[33mcommit c133d2dc702126d5071a4381d7eaad6878505e9c[m
+Author: Nicolas Couti <nicolass.couti@gmail.com>
+Date:   Sat Nov 8 04:10:23 2025 -0300
+
+    Fix: Atualiza a URL do Google Script 2
+
+[33mcommit 8595df36f2ff808a6fcd3bb6ffc8730fc62c1229[m
+Author: Nicolas Couti <nicolass.couti@gmail.com>
+Date:   Sat Nov 8 04:15:14 2025 -0300
+
+    Fix: Atualiza a URL do Google Script 3
+
+[33mcommit e55ac76b2c0b6facb1a7e6a1541dc82d8a6d5e00[m
+Author: Nicolas Couti <nicolass.couti@gmail.com>
+Date:   Sat Nov 8 04:18:05 2025 -0300
+
+    Fix: Corrige erro fatal no acesso à chave da API no deploy
+
+[33mcommit 115fe69a40d569993ecaba70989ba12840591233[m
+Author: Nicolas Couti <nicolass.couti@gmail.com>
+Date:   Sat Nov 8 04:26:07 2025 -0300
+
+    Fix: Corrige erro fatal no acesso à chave da API no deploy 1
+
+[33mcommit c2b99edaf891e2163628a36b45bb65b96e791344[m
+Author: Nicolas Couti <nicolass.couti@gmail.com>
+Date:   Sat Nov 8 04:29:57 2025 -0300
+
+    Fix: Corrige erro fatal no acesso à chave da API no deploy 2
+
+[33mcommit ee871118ee7beeb9953bd95f083a3648228e7603[m
+Author: Nicolas Couti <nicolass.couti@gmail.com>
+Date:   Sat Nov 8 04:35:12 2025 -0300
+
+    Fix: Corrige erro fatal no acesso à chave da API no deploy 3
+
+[33mcommit 83812a92b57eb3b8bc50fb3709682c509e6705f0[m
+Author: Nicolas Couti <nicolass.couti@gmail.com>
+Date:   Sat Nov 8 04:39:24 2025 -0300
+
+    Fix: Corrige erro fatal no acesso à chave da API no deploy 4
+
+[33mcommit 8b0d3c990201d91c6f3dbf82f94f113ce57db205[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Nicolas Couti <nicolass.couti@gmail.com>
+Date:   Sat Nov 8 04:44:24 2025 -0300
+
+    Fix: Corrige erro fatal no acesso à chave da API no deploy 5
