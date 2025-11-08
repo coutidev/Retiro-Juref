@@ -1,0 +1,5 @@
+{
+  "name": "JUREF Retiro",
+  "description": "Uma aplicação web para realizar a inscrição no retiro do grupo JUREF. Os usuários podem preencher um formulário com seus dados pessoais e manifestar interesse em participar.",
+  "requestFramePermissions": []
+}
