@@ -27,22 +27,22 @@ const Layout: React.FC = () => {
   return (
     <div className="min-h-screen bg-transparent text-gray-200 font-sans flex flex-col">
       <header className="bg-black/50 backdrop-blur-sm border-b border-amber-400/20 shadow-lg sticky top-0 z-10">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 relative">
+           {showBackButton && (
+              <button
+                onClick={() => navigate(-1)}
+                aria-label="Voltar para a página anterior"
+                className="absolute top-1/2 -translate-y-1/2 left-4 sm:left-6 lg:left-8 text-gray-400 hover:text-amber-400 transition-colors p-2 rounded-full hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-amber-500 z-20"
+              >
+                <ArrowLeftIcon className="h-6 w-6" />
+              </button>
+          )}
           <h1 className="text-3xl font-bold text-amber-400 tracking-tight">JUREF</h1>
           <p className="text-gray-400">Juventude Renascendo na Fé</p>
           <p className="text-sm text-gray-500 mt-1">Desde 1995</p>
         </div>
       </header>
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow flex items-center justify-center relative">
-        {showBackButton && (
-            <button
-              onClick={() => navigate(-1)}
-              aria-label="Voltar para a página anterior"
-              className="absolute top-4 left-4 text-gray-400 hover:text-amber-400 transition-colors p-2 rounded-full hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-amber-500 z-20"
-            >
-              <ArrowLeftIcon className="h-6 w-6" />
-            </button>
-        )}
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow flex items-center justify-center">
         <Outlet />
       </main>
       <footer className="text-center py-6 mt-8 text-gray-500 text-sm">
@@ -63,7 +63,6 @@ const Layout: React.FC = () => {
 };
 
 const App: React.FC = () => {
-  // Carrega as inscrições do localStorage na inicialização
   const [submissions, setSubmissions] = useState<Submission[]>(() => {
     try {
       const savedSubmissions = window.localStorage.getItem('jurefSubmissions');
@@ -74,7 +73,6 @@ const App: React.FC = () => {
     }
   });
 
-  // Salva as inscrições no localStorage sempre que a lista for alterada
   useEffect(() => {
     try {
       window.localStorage.setItem('jurefSubmissions', JSON.stringify(submissions));
@@ -84,38 +82,35 @@ const App: React.FC = () => {
   }, [submissions]);
 
 
-  const handleNewSubmission = (newSubmission: NewSubmission) => {
+  const handleNewSubmission = async (newSubmission: NewSubmission): Promise<void> => {
     const submissionWithId: Submission = {
       ...newSubmission,
-      id: new Date().toISOString() + Math.random().toString(),
+      id: new Date().toISOString() + Math.random().toString().slice(2, 8),
     };
     
-    // Atualiza o estado local, o que dispara o salvamento no localStorage
     setSubmissions(prevSubmissions => [submissionWithId, ...prevSubmissions]);
 
-    // --- CÓDIGO PARA INTEGRAÇÃO COM PLANILHAS GOOGLE ---
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzy1CJcFllNFrxqH3Ex74eJQU9kXB66DSsUAm4Mwvu_kB0L8fqfYKfzb8OcRQCPpPxR/exec';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwUJmxcGFhrvaKmEBNtmZR7g8NRLNfbvna6izVtXcnVsYoM_DGw-Z6m0dqNTmYjPjAJ/exec';
 
-    fetch(GOOGLE_SCRIPT_URL, {
-      method: 'POST',
-      body: JSON.stringify(submissionWithId),
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'text/plain;charset=utf-8',
-      },
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.result === 'success') {
-        console.log('Inscrição enviada para a planilha com sucesso!', data);
-      } else {
-        console.error('Erro ao enviar para a planilha:', data.error);
-        // Opcional: Adicionar lógica para lidar com falhas de envio
-      }
-    })
-    .catch(err => {
-      console.error('Erro de rede ao contatar a planilha:', err);
-    });
+    try {
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            body: JSON.stringify(submissionWithId),
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'text/plain;charset=utf-8',
+            },
+        });
+
+        const data = await response.json();
+        if (data.result === 'success') {
+            console.log('Inscrição enviada para a planilha com sucesso!', data);
+        } else {
+            console.error('Erro ao enviar para a planilha:', data.error);
+        }
+    } catch (err) {
+        console.error('Erro de rede ao contatar a planilha:', err);
+    }
   };
 
   return (
