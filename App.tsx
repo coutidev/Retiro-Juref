@@ -90,14 +90,17 @@ const App: React.FC = () => {
     
     setSubmissions(prevSubmissions => [submissionWithId, ...prevSubmissions]);
 
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxfSzZQWYNS3S9vhCcpWtbBl4WrK1_UVNeu2E0YL2-mq7BTPJH-K_hfklYmfXJlXmyV/exec';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyltcF2Fyw9wCdHi5E4O5R5IALTE20-J_2N39lhN6M95YUNMFxm1-q8CGNLvhGg01nCNw/exec';
 
     try {
         const response = await fetch(GOOGLE_SCRIPT_URL, {
             method: 'POST',
+            // O Google Apps Script espera os dados como uma string de texto, não como JSON.
+            // A conversão para JSON é feita no próprio corpo da requisição.
             body: JSON.stringify(submissionWithId),
             mode: 'cors',
             headers: {
+                // A recomendação do Google é usar 'text/plain' para evitar problemas com 'CORS preflight'.
                 'Content-Type': 'text/plain;charset=utf-8',
             },
         });
