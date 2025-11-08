@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { HashRouter, Routes, Route, Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { Submission, NewSubmission } from './types';
 import RegistrationForm from './components/RegistrationForm';
 import SuccessPage from './components/SuccessPage';
-import SubmissionsList from './components/SubmissionsList';
 import WelcomePage from './components/WelcomePage';
 
 const InstagramIcon: React.FC<{className?: string}> = ({className}) => (
@@ -52,55 +51,27 @@ const Layout: React.FC = () => {
               </a>
           </div>
         <p>&copy; {new Date().getFullYear()} Grupo JUREF. Todos os direitos reservados.</p>
-        <div className="flex justify-center items-center space-x-4 mt-2">
-           <p>Desenvolvido por: Nicolas Couti</p>
-           <span className="text-gray-600">|</span>
-           <Link to="/admin" className="hover:text-amber-400 transition-colors">Admin</Link>
-        </div>
+        <p className="mt-2">Desenvolvido por: Nicolas Couti</p>
       </footer>
     </div>
   );
 };
 
 const App: React.FC = () => {
-  const [submissions, setSubmissions] = useState<Submission[]>(() => {
-    try {
-      const savedSubmissions = window.localStorage.getItem('jurefSubmissions');
-      return savedSubmissions ? JSON.parse(savedSubmissions) : [];
-    } catch (error) {
-      console.error("Não foi possível carregar as inscrições do localStorage", error);
-      return [];
-    }
-  });
-
-  useEffect(() => {
-    try {
-      window.localStorage.setItem('jurefSubmissions', JSON.stringify(submissions));
-    } catch (error) {
-      console.error("Não foi possível salvar as inscrições no localStorage", error);
-    }
-  }, [submissions]);
-
-
   const handleNewSubmission = async (newSubmission: NewSubmission): Promise<void> => {
     const submissionWithId: Submission = {
       ...newSubmission,
       id: new Date().toISOString() + Math.random().toString().slice(2, 8),
     };
     
-    setSubmissions(prevSubmissions => [submissionWithId, ...prevSubmissions]);
-
     const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyltcF2Fyw9wCdHi5E4O5R5IALTE20-J_2N39lhN6M95YUNMFxm1-q8CGNLvhGg01nCNw/exec';
 
     try {
         const response = await fetch(GOOGLE_SCRIPT_URL, {
             method: 'POST',
-            // O Google Apps Script espera os dados como uma string de texto, não como JSON.
-            // A conversão para JSON é feita no próprio corpo da requisição.
             body: JSON.stringify(submissionWithId),
             mode: 'cors',
             headers: {
-                // A recomendação do Google é usar 'text/plain' para evitar problemas com 'CORS preflight'.
                 'Content-Type': 'text/plain;charset=utf-8',
             },
         });
@@ -131,7 +102,6 @@ const App: React.FC = () => {
              </div>
           } />
           <Route path="success" element={<SuccessPage />} />
-          <Route path="admin" element={<SubmissionsList submissions={submissions} />} />
         </Route>
       </Routes>
     </HashRouter>
